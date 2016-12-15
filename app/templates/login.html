@@ -1,0 +1,31 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <form action="" method="post" name="login">
+          {{form.hidden_tag()}}
+          <p>
+            {{_('Email')}}:<br>
+            {{form.email(size=40)}}<br>
+            {% for error in form.errors.email %}
+            <span class="error">{{error}}</span>
+            {% endfor %}<br>
+            {{_('Password')}}:<br>
+            {{form.password(size=40)}}<br>
+            {% for error in form.errors.password %}
+            <span class="error">{{error}}</span>
+            {% endfor %}<br>
+          </p>
+          <p>{{form.remember_me}} {{_('Remember Me')}}</p>
+          <p><input class="btn btn-primary" type="submit" value="{{_('Sign In')}}"></p>
+          <p>{{_('Not registered yet?')}} <a href="{{ url_for('register') }}">{{_('Register')}}</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

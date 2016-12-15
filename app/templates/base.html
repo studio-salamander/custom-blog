@@ -1,0 +1,42 @@
+<html>
+  {% include 'base-head.html' %}
+  <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <a href="{{ url_for('index') }}">{{_('Home')}}</a>
+            {% if current_user.is_authenticated %}
+            | <strong>{{_('Hello')}}, <a href="{{ url_for('user', nickname = current_user.nickname) }}">{{ current_user.nickname }}</a>!</strong>, <a href="{{ url_for('logout') }}">{{_('Log Out')}}</a>
+            {% else %}
+            | <a href="{{ url_for('login') }}">{{_('Log In')}}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <hr>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <h1>{{title}}</h1>
+        </div>
+      </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+      </div>
+          </ul>
+      </div>
+      {% endif %}
+    {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+    {% include 'base-footer.html' %}
+  </body>
+</html>

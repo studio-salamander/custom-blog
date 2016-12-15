@@ -1,0 +1,19 @@
+<html>
+  {% include 'base-head.html' %}
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+          <h1>{{title}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          {% block content %}{% endblock %}
+          <p><a href="{{url_for('index')}}">Back</a></p>
+        </div>
+      </div>
+    </div>
+    {% include 'base-footer.html' %}
+  </body>
+</html>

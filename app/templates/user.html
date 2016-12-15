@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="user-avatar">
+              <img src="{{user.avatar(128)}}">
+            </div>
+            <h2>{{user.nickname}}</h2>
+            {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
+            {% if user.last_seen %}<p><i>{{_('Last seen on')}}: {{momentjs(user.last_seen).calendar()}}</i></p>{% endif %}
+            {% if user.id == current_user.id %}
+            <p>
+              <a href="{{url_for('edit')}}">{{_('Edit Profile')}}</a>
+              {% if form.id.data == 0 %}
+              &nbsp;|&nbsp;<a href="#" id="new_post_link" class="closed" data-toggle="{{_('Close New Post Form')}}">{{_('Write New Post')}}</a>
+              {% endif %}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+        {% if user.id == current_user.id %}
+        <div class="row" id="new_post_form"{% if form.id.data == 0 %} style="display:none;"{% endif %}>
+          <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <h3>{% if form.id.data == 0 %}{{_('New Post')}}{% else %}{{_('Update Post')}}{% endif %}</h3>
+            <form action="" method="post" name="post">
+              {{form.hidden_tag()}}
+              <p>
+                {{_('Title')}}:<br>
+                {{form.title(size = 40)}}<br>
+                {% for error in form.errors.title %}
+                <span class="error">{{error}}</span>
+                {% endfor %}<br>
+                {{_('Slug')}}:<br>
+                {{form.slug(size = 40)}}<br>
+                {% for error in form.errors.slug %}
+                <span class="error">{{error}}</span>
+                {% endfor %}<br>
+                {{_('Post')}}:<br>
+                {{form.body(cols = 43, rows = 4)}}<br>
+                {% for error in form.errors.body %}
+                <span class="error">{{error}}</span>
+                {% endfor %}<br>
+              </p>
+              <p><input class="btn btn-primary" type="submit" value="{{_('Post')}}"></p>
+            </form>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var linkAction = function($link, is_open) {
+            var anchor = $link.text();
+            if (is_open) {
+              $link.removeClass('closed').addClass('opened');
+            } else {
+              $link.removeClass('opened').addClass('closed');
+            }
+            $link.text($link.attr('data-toggle')).attr({'data-toggle': anchor});
+          };
+          (function($) {
+            $('#new_post_link').on('click', function(event) {
+              event.preventDefault();
+              var $link = $(this);
+              if ($(this).hasClass('closed') && $('#new_post_form').is(':hidden')) {
+                $('#new_post_form').slideDown('fast', linkAction($link, true));
+              } else {
+                $('#new_post_form').slideUp('fast', linkAction($link, false));
+              }
+            });
+          })(jQuery);
+        </script>
+        {% endif %}
+        {% for post in posts %}
+          {% include 'post.html' %}
+        {% endfor %}
+      </div>
+    </section>
+{% endblock %}
