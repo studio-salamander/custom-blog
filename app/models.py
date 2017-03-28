@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
         return '<User %r>' % (self.email)
 
     def avatar(self, size):
-        return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
+        return 'http://www.gravatar.com/avatar/' + md5(self.email.encode('utf8')).hexdigest() + '?d=mm&s=' + str(size)
 
     @staticmethod
     def make_unique_nickname(nickname, uid):
