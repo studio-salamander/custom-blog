@@ -16,7 +16,8 @@ from config import basedir
 lm = LoginManager()
 lm.init_app(app)
 
-from momentjs import momentjs
+
+from app.momentjs import momentjs
 app.jinja_env.globals['momentjs'] = momentjs
 
 from flask_babel import Babel

@@ -3,10 +3,11 @@ from flask_login import login_user, logout_user, current_user, login_required, U
 from flask_babel import gettext
 from app import app, db, lm, babel
 from config import LANGUAGES
-from forms import LoginForm, RegisterForm, EditForm, PostForm
-from models import User, ROLE_USER, ROLE_ADMIN, Post
+from app.forms import LoginForm, RegisterForm, EditForm, PostForm
+from app.models import User, ROLE_USER, ROLE_ADMIN, Post
 from werkzeug.security import generate_password_hash, check_password_hash
-from urlparse import urlparse, urljoin
+
+from urllib.parse import urlparse, urljoin
 from datetime import datetime
 from sqlalchemy import desc
 
