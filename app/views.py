@@ -125,7 +125,7 @@ def register():
         if user is None:
             nickname = form.email.data.split('@')[0]
             nickname = User.make_valid_nickname(nickname)
-            nickname = User.make_unique_nickname(nickname, 0)
+            nickname = User.make_unique_nickname(nickname, 1)
             user = User(email = form.email.data, password = generate_password_hash(form.password.data), nickname = nickname, role = ROLE_USER)
             db.session.add(user)
             db.session.commit()
