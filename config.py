@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
+import os
+
 # Security
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'xnj-nj-tcnm-e-tutvjnf'
 
 # SQLAlchemy
-import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+DB_PATH = os.path.join(basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = f'sqlite:///{DB_PATH}'
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 

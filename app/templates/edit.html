@@ -2,28 +2,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-        <form action="" method="post" name="edit">
-          {{form.hidden_tag()}}
-          <p>
-            {{_('Your nickname')}}:<br>
-            {{form.nickname(size = 40)}}<br>
-            {% for error in form.errors.nickname %}
-            <span class="error">{{error}}</span>
-            {% endfor %}<br>
-            {{_('About yourself')}}:<br>
-            {{form.about_me(cols = 43, rows = 4)}}<br>
-            {% for error in form.errors.about_me %}
-            <span class="error">{{error}}</span>
-            {% endfor %}<br>
-          </p>
-          <p><input class="btn btn-primary" type="submit" value="{{_('Save')}}"></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <form action="" method="post" name="edit">
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ _('Your nickname') }}:<br>
+                            {{ form.nickname(size = 40) }}<br>
+                            {% for error in form.errors.nickname %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}<br>
+                            {{ _('About yourself') }}:<br>
+                            {{ form.about_me(cols = 43, rows = 4) }}<br>
+                            {% for error in form.errors.about_me %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}<br>
+                        </p>
+                        <p><input class="btn btn-primary" type="submit" value="{{ _('Save') }}"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
