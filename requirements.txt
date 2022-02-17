@@ -6,7 +6,7 @@
 #
 
 -i https://pypi.org/simple/
-babel==2.7.0
+babel==2.9.1
 click==6.7
 decorator==4.4.0
 flask-babel==0.12.2
