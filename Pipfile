@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-babel = "==2.7.0"
+babel = "==2.9.1"
 click = "==6.7"
 decorator = "==4.4.0"
 flask-wtf = "==0.14.2"
