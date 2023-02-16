@@ -1,20 +1,15 @@
+from datetime import datetime
+from urllib.parse import urlparse, urljoin
+
 from flask import render_template, flash, redirect, session, url_for, request, abort
-from flask_login import login_user, logout_user, current_user, login_required
 from flask_babel import gettext
-from app import app, db, lm, babel
-from config import LANGUAGES
-from app.forms import LoginForm, RegisterForm, EditForm, PostForm
-from app.models import User, ROLE_USER, Post
+from flask_login import login_user, logout_user, current_user, login_required
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from urllib.parse import urlparse, urljoin
-from datetime import datetime
-from sqlalchemy import desc
-
-
-@babel.localeselector
-def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys())
+from app import app, db, lm, babel
+from app.forms import LoginForm, RegisterForm, EditForm, PostForm
+from app.models import User, ROLE_USER, Post
 
 
 @lm.user_loader
@@ -38,8 +33,8 @@ def before_request():
 
 def redirect_url(default='index'):
     return request.args.get('next') or \
-           request.referrer or \
-           url_for(default)
+        request.referrer or \
+        url_for(default)
 
 
 @app.errorhandler(401)

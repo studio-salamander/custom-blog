@@ -27,7 +27,7 @@ class EditForm(BaseForm):
         BaseForm.__init__(self, *args, **kwargs)
         self.original_nickname = original_nickname
 
-    def validate(self):
+    def validate(self, extra_validators=None):
         if not BaseForm.validate(self):
             return False
 

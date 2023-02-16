@@ -1,7 +1,10 @@
-from flask import Flask
+from flask import Flask, request
+from flask_babel import Babel
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from config import basedir
-from datetime import datetime
+
+from app.momentjs import MomentJS
+from config import LANGUAGES
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -9,19 +12,18 @@ app.blog_name = 'Custom Blog'
 
 db = SQLAlchemy(app)
 
-import os
-from flask_login import LoginManager
-from config import basedir
-
 lm = LoginManager()
 lm.init_app(app)
 
-
-from app.momentjs import MomentJS
 app.jinja_env.globals['momentjs'] = MomentJS
 
-from flask_babel import Babel
+
+def get_locale():
+    return request.accept_languages.best_match(LANGUAGES.keys())
+
+
 babel = Babel(app)
+babel.init_app(app, locale_selector=get_locale)
 
 from app import views, models
 

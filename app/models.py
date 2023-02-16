@@ -1,8 +1,9 @@
 import re
-from flask_login import UserMixin
-from app import db
 from hashlib import md5
-from unicodedata import normalize
+
+from flask_login import UserMixin
+
+from app import db
 
 ROLE_USER = 0
 ROLE_ADMIN = 1

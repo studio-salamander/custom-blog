@@ -4,3 +4,5 @@ db_repository
 app.db
 
 .idea/
+*.example.*
+/Pipfile.lock
