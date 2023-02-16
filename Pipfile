@@ -14,6 +14,7 @@ jinja2 = "*"
 flask-sqlalchemy = "*"
 typing-extensions = "*"
 email-validator = "*"
+sqlalchemy-migrate = "*"
 
 [requires]
 python_version = "3.9"

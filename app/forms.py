@@ -1,7 +1,9 @@
 import re
+
 from flask_wtf import FlaskForm as BaseForm
 from wtforms import PasswordField, BooleanField, TextAreaField, HiddenField, StringField
 from wtforms.validators import Email, EqualTo, Length, Regexp, DataRequired
+
 from app.models import User
 
 _title_re = re.compile(r'[\t!"#$%&\'()*\-/<=>?@\[\\\]^_`{|};:,.]+')

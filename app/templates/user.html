@@ -52,26 +52,26 @@
                     </div>
                 </div>
                 <script type="text/javascript">
-                  const linkAction = function ($link, is_open) {
-                    const anchor = $link.text();
-                    if (is_open) {
-                      $link.removeClass('closed').addClass('opened');
-                    } else {
-                      $link.removeClass('opened').addClass('closed');
-                    }
-                    $link.text($link.attr('data-toggle')).attr({'data-toggle': anchor});
-                  };
-                  (function ($) {
-                    $('#new_post_link').on('click', function (event) {
-                      event.preventDefault();
-                      const $link = $(this);
-                      if ($('#new_post_form').is(':hidden') && $(this).hasClass('closed')) {
-                        $('#new_post_form').slideDown('fast', linkAction($link, true));
-                      } else {
-                        $('#new_post_form').slideUp('fast', linkAction($link, false));
-                      }
-                    });
-                  })(jQuery);
+                    const linkAction = function ($link, is_open) {
+                        const anchor = $link.text();
+                        if (is_open) {
+                            $link.removeClass('closed').addClass('opened');
+                        } else {
+                            $link.removeClass('opened').addClass('closed');
+                        }
+                        $link.text($link.attr('data-toggle')).attr({'data-toggle': anchor});
+                    };
+                    (function ($) {
+                        $('#new_post_link').on('click', function (event) {
+                            event.preventDefault();
+                            const $link = $(this);
+                            if ($('#new_post_form').is(':hidden') && $(this).hasClass('closed')) {
+                                $('#new_post_form').slideDown('fast', linkAction($link, true));
+                            } else {
+                                $('#new_post_form').slideUp('fast', linkAction($link, false));
+                            }
+                        });
+                    })(jQuery);
                 </script>
             {% endif %}
             {% for post in posts %}

@@ -7,7 +7,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import app, db, lm, babel
+from app import app, db, lm
 from app.forms import LoginForm, RegisterForm, EditForm, PostForm
 from app.models import User, ROLE_USER, Post
 
